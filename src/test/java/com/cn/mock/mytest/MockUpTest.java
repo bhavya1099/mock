@@ -24,9 +24,11 @@ public class MockUpTest {
          * 只需要把Calendar类传入MockUp类的构造函数即可
          * */
         new MockUp<Calendar>(Calendar.class){
+
             //想mock哪个方法，就给哪个方法加上@Mock，没有@Mock的方法，不受影响
             @Mock
             public int get(int unit){
+                System.out.println("inner class Calendar");
                 if (unit == Calendar.YEAR){
                     return 2017;
                 }

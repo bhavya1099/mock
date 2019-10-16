@@ -16,7 +16,7 @@ import static org.junit.Assert.assertEquals;
  */
 @RunWith(JMockit.class)
 public class GetServiceForBookTestMock {
-    private GetServiceForBook getServiceForBook = new GetServiceForBook();
+//    private GetServiceForBook getServiceForBook = new GetServiceForBook();
 
     @Test
     public void testBookService() {
@@ -28,9 +28,22 @@ public class GetServiceForBookTestMock {
                 System.out.println("mock getService");
                 return 3;
             }
+
+            @Mock
+            public String getRes(String bookType) {
+                System.out.println("mock getRes");
+                return "novel";
+            }
         };
 
-        int test = getServiceForBook.getService("novel");
-        assertEquals(3,test);
+        GetServiceForBook getServiceForBook = new GetServiceForBook();
+
+        getServiceForBook.test("novel");
+
+//        int test = getServiceForBook.getService("novel");
+//        String res = getServiceForBook.getRes("movie");
+//        System.out.println("res:"+res);
+//        assertEquals(3,test);
+//        assertEquals("novel",res);
     }
 }
