@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>TaskService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">mock</a> &gt; <a href="index.source.html" class="el_package">com.cn.mock.service</a> &gt; <span class="el_source">TaskService.java</span></div><h1>TaskService.java</h1><pre class="source lang-java linenums">package com.cn.mock.service;
+
+import java.util.Calendar;
+import java.util.Date;
+
+/**
+ * Created on 2019/10/15.
+ *
+ * @author hhx
+ */
+<span class="nc" id="L11">public class TaskService {</span>
+    private static final int YESTERDAY_TASK_LIMIT_HOUR = 8;
+
+    /**
+     * 根据任务创建的时间判断任务是否可以执行
+     *
+     * 如果任务是当天创建的允许执行， 如果是昨天的任务，允许在第二天的早上YESTERDAY_TASK_LIMIT_HOUR点前执行
+     * @param taskCreateTime 任务创建时间
+     * @return true 任务可以执行， false 任务已过期不可以执行
+     */
+    public boolean canExecute(Date taskCreateTime) {
+<span class="nc" id="L22">        Date now = new Date();</span>
+<span class="nc" id="L23">        Calendar nowCalendar = Calendar.getInstance();</span>
+<span class="nc" id="L24">        nowCalendar.setTime(now);</span>
+
+<span class="nc" id="L26">        Calendar createTimeCalendar = Calendar.getInstance();</span>
+<span class="nc" id="L27">        createTimeCalendar.setTime(taskCreateTime);</span>
+<span class="nc" id="L28">        boolean isToday = isSameDay(taskCreateTime, now);</span>
+
+        //如果是当天任务允许执行
+<span class="nc bnc" id="L31" title="All 2 branches missed.">        if (isToday) {</span>
+<span class="nc" id="L32">            return true;</span>
+        }
+
+<span class="nc" id="L35">        nowCalendar.add(Calendar.DATE, -1);</span>
+<span class="nc" id="L36">        Date yesterday = nowCalendar.getTime();</span>
+<span class="nc" id="L37">        boolean isYesterday = isSameDay(taskCreateTime, yesterday);</span>
+
+        //如果是昨天任务，只允许在8点前执行
+<span class="nc bnc" id="L40" title="All 2 branches missed.">        if (isYesterday) {</span>
+<span class="nc bnc" id="L41" title="All 2 branches missed.">            return nowCalendar.get(Calendar.HOUR_OF_DAY) &lt; YESTERDAY_TASK_LIMIT_HOUR;</span>
+        }
+
+<span class="nc" id="L44">        return false;</span>
+    }
+
+    /**
+     * 判断两个日期是否为同一天
+     * @param date1 date1
+     * @param date2 date2
+     * @return 是同一天返回true， 否则为false
+     */
+    private boolean isSameDay(Date date1, Date date2) {
+<span class="nc" id="L54">        Calendar calendar1 = Calendar.getInstance();</span>
+<span class="nc" id="L55">        calendar1.setTime(date1);</span>
+<span class="nc" id="L56">        Calendar calendar2 = Calendar.getInstance();</span>
+<span class="nc" id="L57">        calendar2.setTime(date2);</span>
+<span class="nc bnc" id="L58" title="All 2 branches missed.">        return calendar1.get(Calendar.YEAR) == calendar2.get(Calendar.YEAR)</span>
+<span class="nc bnc" id="L59" title="All 2 branches missed.">                &amp;&amp; calendar1.get(Calendar.MONTH) == calendar2.get(Calendar.MONTH)</span>
+<span class="nc bnc" id="L60" title="All 2 branches missed.">                &amp;&amp; calendar1.get(Calendar.DAY_OF_MONTH) == calendar2.get(Calendar.DAY_OF_MONTH);</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>
