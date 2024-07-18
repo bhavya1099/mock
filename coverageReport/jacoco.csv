@@ -1,0 +1,10 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+mock,com.cn.mock.service,MethodClass,7,0,0,0,3,0,3,0,3,0
+mock,com.cn.mock.service,RedisService,8,0,0,0,2,0,2,0,2,0
+mock,com.cn.mock.service,ServiceUseRedis,22,0,0,0,4,0,2,0,2,0
+mock,com.cn.mock.service,GetServiceForBook,58,14,4,2,15,5,5,3,3,2
+mock,com.cn.mock.service,StaticTarget,17,0,0,0,5,0,3,0,3,0
+mock,com.cn.mock.service,TaskService,86,0,12,0,22,0,9,0,3,0
+mock,com.cn.mock,MockApplication,8,0,0,0,3,0,2,0,2,0
+mock,com.cn.mock,StringUtils.new List() {...},49,0,0,0,24,0,24,0,24,0
+mock,com.cn.mock,StringUtils,37,0,6,0,12,0,6,0,3,0
